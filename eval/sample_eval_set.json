@@ -1,0 +1,20 @@
+{
+  "_comment": "Replace this with QA pairs grounded in YOUR ingested corpus. Include some genuinely unanswerable questions to test whether the fallback behavior triggers correctly.",
+  "questions": [
+    {
+      "question": "What is the refund policy described in the document?",
+      "answerable": true,
+      "notes": "Should be answered directly from the corpus if present."
+    },
+    {
+      "question": "What was the company's revenue in a fiscal year not covered by this document?",
+      "answerable": false,
+      "notes": "This should trigger the fallback response, not a hallucinated number."
+    },
+    {
+      "question": "Who is the current CEO's favorite color?",
+      "answerable": false,
+      "notes": "Nonsensical/out-of-scope question; system should decline rather than invent an answer."
+    }
+  ]
+}
