@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Healing RAG Engine</title>
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="navbar">
+      <div class="brand">
+        <div class="logo-icon">
+          <i class="fa-solid fa-rotate-right spin-icon"></i>
+        </div>
+        <div class="brand-text">
+          <h1>Self-Healing RAG</h1>
+          <span class="subtitle">Closed-Loop Grounding & Query Reformulation</span>
+        </div>
+      </div>
+      <div class="backend-status" id="backendStatus">
+        <span class="status-dot pulse"></span>
+        <span id="statusText">Connecting to API...</span>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="workspace-grid">
+      <!-- Left Sidebar: Controls & Ingestion -->
+      <aside class="sidebar-panel">
+        <div class="panel-card">
+          <h2><i class="fa-solid fa-database"></i> 1. Corpus Configuration</h2>
+          <div class="form-group">
+            <label for="corpusId">Corpus ID</label>
+            <div class="input-with-action">
+              <input type="text" id="corpusId" value="default_corpus" placeholder="e.g. tech_docs">
+              <button type="button" id="checkCorpusBtn" class="btn-secondary" title="Check Corpus Existence">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+            <p class="field-help" id="corpusStatusHelp">Loading corpus status...</p>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <h2><i class="fa-solid fa-file-arrow-up"></i> 2. Ingest Knowledge</h2>
+          <form id="ingestForm">
+            <div class="drop-zone" id="dropZone">
+              <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+              <p>Drag & drop <strong>.pdf, .txt, .md</strong> file here</p>
+              <span class="or-divider">or</span>
+              <label for="fileInput" class="btn-file-select">Browse File</label>
+              <input type="file" id="fileInput" accept=".pdf,.txt,.md">
+              <div class="selected-file-name" id="fileNameDisplay"></div>
+            </div>
+            <button type="submit" id="ingestBtn" class="btn-primary full-width" disabled>
+              <i class="fa-solid fa-upload"></i> Ingest Document
+            </button>
+          </form>
+          <div id="ingestResult" class="result-message"></div>
+        </div>
+
+        <div class="panel-card">
+          <h2><i class="fa-solid fa-sliders"></i> 3. Pipeline Parameters</h2>
+          <div class="form-group">
+            <div class="slider-header">
+              <label for="topK">Top-K Chunks: <span id="topKVal">4</span></label>
+            </div>
+            <input type="range" id="topK" min="1" max="10" value="4">
+          </div>
+          <div class="form-group">
+            <div class="slider-header">
+              <label for="maxRetries">Max Self-Healing Retries: <span id="maxRetriesVal">2</span></label>
+            </div>
+            <input type="range" id="maxRetries" min="0" max="5" value="2">
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Area: Question & Self-Healing Trace -->
+      <section class="content-panel">
+        <div class="panel-card query-card">
+          <h2><i class="fa-solid fa-comments"></i> Ask a Question</h2>
+          <form id="askForm">
+            <div class="textarea-wrapper">
+              <textarea id="questionInput" rows="3" placeholder="Ask a question grounded in your ingested documents... (e.g., What is the refund policy?)"></textarea>
+              <button type="submit" id="askBtn" class="btn-accent">
+                <i class="fa-solid fa-paper-plane"></i> Ask
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Trace Results Area -->
+        <div id="resultsContainer" class="results-container">
+          <div class="empty-state">
+            <i class="fa-solid fa-brain-circuit empty-icon"></i>
+            <h3>No queries executed yet</h3>
+            <p>Ingest a document in the sidebar and ask a question to see the live self-critique & query reformulation pipeline in action.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     # --- Groq ---
-    groq_api_key: str
+    groq_api_key: str = ""
     groq_generation_model: str = "llama-3.3-70b-versatile"
     groq_critic_model: str = "llama-3.3-70b-versatile"
     groq_reformulate_model: str = "llama-3.1-8b-instant"  # cheap/fast model for query rewriting

@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: self-healing-rag
+    env: docker
+    plan: free
+    region: oregon
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_GENERATION_MODEL
+        value: llama-3.3-70b-versatile
+      - key: GROQ_CRITIC_MODEL
+        value: llama-3.3-70b-versatile
+      - key: GROQ_REFORMULATE_MODEL
+        value: llama-3.1-8b-instant
+      - key: EMBEDDING_MODEL
+        value: all-MiniLM-L6-v2
+      - key: FAITHFULNESS_THRESHOLD
+        value: "0.55"
+      - key: MAX_RETRIES
+        value: "2"
+      - key: CHROMA_PERSIST_DIR
+        value: ./chroma_db
