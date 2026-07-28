@@ -1,5 +1,7 @@
 # 🔄 Self-Healing RAG Pipeline
 
+[![Frontend](https://img.shields.io/badge/Vercel-Live%20Frontend-black?logo=vercel)](https://self-healing-rag-jade.vercel.app/)
+[![Backend](https://img.shields.io/badge/Railway-Live%20Backend-purple?logo=railway)](https://selfhealingrag-production-4084.up.railway.app/docs)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)](https://fastapi.tiangolo.com/)
 [![Groq](https://img.shields.io/badge/LLM-Groq%20Llama%203.3-f34f29.svg)](https://groq.com/)
@@ -8,6 +10,9 @@
 
 > An intelligent **Retrieval-Augmented Generation (RAG)** engine built with **FastAPI**, **Groq**, and **ChromaDB**. 
 > Unlike standard RAG systems that blindly accept initial retrieval results, **Self-Healing RAG** self-critiques every generated answer for hallucination, dynamically reformulates failed queries, and retries retrieval before gracefully falling back to a safe answer.
+
+- 🌐 **Live Web Application (Vercel)**: [https://self-healing-rag-jade.vercel.app/](https://self-healing-rag-jade.vercel.app/)
+- ⚙️ **Live Backend API (Railway)**: [https://selfhealingrag-production-4084.up.railway.app/docs](https://selfhealingrag-production-4084.up.railway.app/docs)
 
 ---
 
