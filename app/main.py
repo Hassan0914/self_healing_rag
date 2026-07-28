@@ -94,5 +94,8 @@ def ask(request: AskRequest):
 
 @app.get("/corpora/{corpus_id}/exists")
 def corpus_exists(corpus_id: str):
-    vector_store = get_vector_store()
-    return {"corpus_id": corpus_id, "exists": vector_store.corpus_exists(corpus_id)}
+    try:
+        vector_store = get_vector_store()
+        return {"corpus_id": corpus_id, "exists": vector_store.corpus_exists(corpus_id)}
+    except Exception as e:
+        return {"corpus_id": corpus_id, "exists": False}
